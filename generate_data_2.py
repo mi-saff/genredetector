@@ -20,7 +20,7 @@ def clean_paragraphs(paragraphs, fnum):
     for paragraph in paragraphs:
         new_paragraph = clean(paragraph)
         removed_stop_words = [x for x in new_paragraph if x not in s]
-        if len(removed_stop_words) >= 10:
+        if len(removed_stop_words) >= 15:
             new_paragraphs.append(removed_stop_words)
     #new_paragraphs = [(clean(curr_paragraph), fnum) for curr_paragraph in paragraphs if len(clean(curr_paragraph)) > 20]
     return new_paragraphs
@@ -36,7 +36,7 @@ def get_paragraphs(filename, fnum):
         else:
             paragraphs.append(curr_line)
             curr_line = ""
-    label = [0] * 2
+    label = [0] * 4
     label[fnum - 1] = 1
     new_paragraphs = clean_paragraphs(paragraphs, label)
     return new_paragraphs
@@ -62,5 +62,3 @@ def main(folder_name):
                 tot_paragraphs += get_paragraphs(fullname, fnum)
     #tot_paragraphs += get_paragraphs("./data/crime/baskervilles.txt", 2)
     return tot_paragraphs
-
-main("hello")
